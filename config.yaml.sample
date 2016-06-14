@@ -5,6 +5,7 @@ mysql:
 mail:
   file: mailbody.txt
   from: foo@bar.com
+  dryRunTo: fooTest@bar.com
 
 aws:
   profile: your-credentials-profile

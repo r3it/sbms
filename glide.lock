@@ -1,14 +1,40 @@
-hash: b9742552a967082b36a1c51af2aeb85b40343edc3518374ac354e4b3b7bd0b8f
-updated: 2016-06-14T11:41:36.673260298+09:00
+hash: 61dd639477c915fb931dbd252265e4dc51adf5fd50cb6e7287385585fde11887
+updated: 2016-06-14T17:37:08.375228852+09:00
 imports:
 - name: github.com/aws/aws-sdk-go
   version: 2e1a49c71fb7d8f6b7e8cca2259ed9b68d9b97ce
   subpackages:
   - aws
+  - aws/credentials
+  - aws/session
+  - service/ses
+  - aws/awserr
+  - aws/client
+  - aws/corehandlers
+  - aws/defaults
+  - aws/request
+  - private/endpoints
+  - aws/awsutil
+  - aws/client/metadata
+  - private/protocol
+  - private/protocol/query
+  - private/signer/v4
+  - private/waiter
+  - aws/credentials/ec2rolecreds
+  - aws/ec2metadata
+  - private/protocol/query/queryutil
+  - private/protocol/xml/xmlutil
+  - private/protocol/rest
+  - service/ec2
+  - private/protocol/ec2query
+- name: github.com/bitly/go-simplejson
+  version: aabad6e819789e569bd6aabf444c935aa9ba1e44
 - name: github.com/BurntSushi/toml
   version: f0aeabca5a127c4078abb8c8d64298b147264b55
 - name: github.com/fsnotify/fsnotify
   version: 30411dbcefb7a1da7e84f75530ad3abe4011b4f8
+- name: github.com/go-ini/ini
+  version: 72ba3e6b9e6b87e0c74c9a7a4dc86e8dd8ba4355
 - name: github.com/go-sql-driver/mysql
   version: 3654d25ec346ee8ce71a68431025458d52a38ac0
 - name: github.com/hashicorp/hcl
@@ -22,6 +48,12 @@ imports:
   - hcl/strconv
   - json/scanner
   - json/token
+- name: github.com/jmespath/go-jmespath
+  version: 0b12d6b521d83fc7f755e7cfc1b1fbdd35a01a74
+- name: github.com/jteeuwen/go-pkg-optarg
+  version: 13b683f7111154d16daf768dfbe3193ce4470d3c
+- name: github.com/k-nishijima/nanairoishi
+  version: b1d4e484a3950a3754345bbfe9271190467c99b6
 - name: github.com/magiconair/properties
   version: c265cfa48dda6474e208715ca93e987829f572f8
 - name: github.com/mitchellh/mapstructure

@@ -15,7 +15,7 @@ type MailSender struct {
 	Template      Email
 }
 
-func (self MailSender) BulkSend() error {
+func (self MailSender) BulkSend(dryRun bool) error {
 	if self.SenderRecords == nil {
 		return fmt.Errorf("SenderRecords is nil")
 	}
@@ -29,19 +29,26 @@ func (self MailSender) BulkSend() error {
 	email.Body = self.Template.Body
 	for _, e := range self.SenderRecords {
 		email.To = e.Address
-		err := self.Send(email)
+		err := self.Send(email, dryRun)
 		if err != nil {
 			fmt.Printf("this address send failed. [%v]\n", e.Address)
+		}
+		if dryRun {
+			break
 		}
 	}
 
 	return nil
 }
 
-func (self MailSender) Send(email Email) error {
+func (self MailSender) Send(email Email, dryRun bool) error {
 	cred := credentials.NewSharedCredentials("", viper.GetString("aws.profile"))
 	cfg := aws.NewConfig().WithRegion(viper.GetString("aws.region")).WithCredentials(cred)
 	svc := ses.New(session.New(cfg))
+
+	if dryRun {
+		email.To = viper.GetString("mail.dryRunTo")
+	}
 
 	params := &ses.SendEmailInput{
 		Destination: &ses.Destination{
@@ -69,6 +76,8 @@ func (self MailSender) Send(email Email) error {
 		ReturnPathArn: aws.String(viper.GetString("aws.arn")),
 		SourceArn:     aws.String(viper.GetString("aws.arn")),
 	}
+	fmt.Println(params)
+	fmt.Println("dryRunTo = " + viper.GetString("mail.dryRunTo"))
 	_, err := svc.SendEmail(params)
 
 	if err != nil {
@@ -77,6 +86,7 @@ func (self MailSender) Send(email Email) error {
 		fmt.Println(err.Error())
 		return err
 	}
+	fmt.Printf("success [%v]\n", email.To)
 
 	// Pretty-print the response data.
 	//fmt.Println(resp)

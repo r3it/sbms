@@ -5,3 +5,4 @@ import:
   - aws
 - package: github.com/go-sql-driver/mysql
 - package: github.com/spf13/viper
+- package: github.com/jteeuwen/go-pkg-optarg

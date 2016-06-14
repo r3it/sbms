@@ -7,6 +7,8 @@ import (
 )
 
 func TestGetFromDB(t *testing.T) {
+	dryRun := true
+
 	records, err := sbms.GetFromDB()
 	if err != nil {
 		t.Error(err)
@@ -22,7 +24,7 @@ func TestGetFromDB(t *testing.T) {
 	sender.Template = template
 
 	// sendErr := sender.Send(template)
-	sendErr := sender.BulkSend()
+	sendErr := sender.BulkSend(dryRun)
 	if sendErr != nil {
 		t.Error(sendErr)
 	}
