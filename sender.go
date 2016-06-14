@@ -76,8 +76,6 @@ func (self MailSender) Send(email Email, dryRun bool) error {
 		ReturnPathArn: aws.String(viper.GetString("aws.arn")),
 		SourceArn:     aws.String(viper.GetString("aws.arn")),
 	}
-	fmt.Println(params)
-	fmt.Println("dryRunTo = " + viper.GetString("mail.dryRunTo"))
 	_, err := svc.SendEmail(params)
 
 	if err != nil {
